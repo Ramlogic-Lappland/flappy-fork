@@ -144,16 +144,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\objects\buttons.cpp" />
     <ClCompile Include="src\objects\obstacle.cpp" />
     <ClCompile Include="src\objects\player.cpp" />
     <ClCompile Include="src\scene\gameplayScene.cpp" />
+    <ClCompile Include="src\scene\menuScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\objects\buttons.h" />
     <ClInclude Include="src\objects\obstacle.h" />
     <ClInclude Include="src\objects\player.h" />
     <ClInclude Include="src\objects\utils.h" />
     <ClInclude Include="src\scene\gameplayScene.h" />
+    <ClInclude Include="src\scene\menuScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
