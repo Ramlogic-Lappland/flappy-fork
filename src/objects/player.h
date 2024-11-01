@@ -1,5 +1,8 @@
+#pragma once
+
 #include "raylib.h"
 
+#include "objects/obstacle.h"
 
 struct Player
 {
@@ -13,13 +16,12 @@ struct Player
     int lastPoints;
 };
 
-extern Player player;
+ 
 //extern Sound loseSfx;
 //extern Sound boostSfx;
 
-void initPlayer(Player& p);
+void initPlayer(Player& player);
 void loadPlayer();
-void updatePlayer(Player& p);
-//void checkPlayerCollisions(Player& p);
-void drawPlayer(Player& p);
+void updatePlayer(Player& player);
+void drawPlayer(Player& player);
 void unloadPlayer();

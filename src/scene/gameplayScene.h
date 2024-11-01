@@ -6,6 +6,8 @@ void loadGameplay();
 
 void updateGameplay();
 
+void checkCollision();
+
 void drawGameplay();
 
 void resetGame();

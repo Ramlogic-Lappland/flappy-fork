@@ -2,48 +2,42 @@
 
 #include "objects/utils.h"
 
-Player player;
-
 //static Texture2D spaceShip;
 //Sound loseSfx;
 //Sound boostSfx;
 
-void initPlayer(Player& p)
+void initPlayer(Player& player)
 {
-	p.position = { static_cast<float>(screenWidthMin) + 200, 
-				   static_cast<float>(screenHeight) / 2.0f };
+	player.position = { static_cast<float>(screenWidthMin) + 200, 
+		   static_cast<float>(screenHeight) / 2.0f };
 
-	p.speed = { 0.0f, 0.0f };
+	player.speed = { 0.0f, 0.0f };
 
-	p.radius = 20.0f;
-
-	p.isActive = true;
-	p.life = 3;
-	p.respawnTime = 1.0f;
-
-	p.point = 0;
+	player.radius = 20.0f;
+	player.isActive = true;
+	player.life = 3;
+	player.respawnTime = 1.0f;
+	
+	player.point = 0;
 }
 
 void loadPlayer()
 {
 }
 
-void updatePlayer(Player& p)
+void updatePlayer(Player& player)
 {
 	if (IsKeyDown(KEY_UP))
-		p.position.y -= 0.1f;
+		player.position.y -= 0.1f;
 
 	if (IsKeyDown(KEY_DOWN))
-		p.position.y += 0.1f;
+		player.position.y += 0.1f;
 }
 
-//void checkPlayerCollisions(Player& p)
-//{
-//}
 
-void drawPlayer(Player& p)
+void drawPlayer(Player& player)
 {
-	DrawCircle(static_cast<int>(p.position.x), static_cast<int>(p.position.y), p.radius, BLUE);
+	DrawCircle(static_cast<int>(player.position.x), static_cast<int>(player.position.y), player.radius, BLUE);
 }
 
 void unloadPlayer()

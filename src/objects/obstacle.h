@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 
+#include "objects/player.h"
+
 struct Obstacle
 {
     Vector2 position;
@@ -10,7 +12,7 @@ struct Obstacle
     int height;
 };
 
-extern Obstacle obstacle;
+ 
 
 //extern Sound loseSfx;
 //extern Sound boostSfx;
