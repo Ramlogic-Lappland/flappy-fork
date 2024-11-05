@@ -41,3 +41,10 @@ int main()
 	// Cierre
 	CloseWindow();
 }
+
+//#include "game.h"
+//
+//int main()
+//{
+//	run();
+//}

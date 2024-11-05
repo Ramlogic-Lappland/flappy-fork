@@ -3,7 +3,6 @@
 #include "objects/utils.h"
 
 
-
 void initObstacle(Obstacle& o)
 {
 	o.position = { static_cast<float>(screenWidth),
@@ -29,8 +28,6 @@ void updateObstacle(Obstacle& o)
 	}
 
 	o.position.x -= o.speed.x * GetFrameTime();
-
-	
 }
 
 void drawObstacle(Obstacle& o)

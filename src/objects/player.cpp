@@ -27,8 +27,12 @@ void loadPlayer()
 
 void updatePlayer(Player& player)
 {
+	player.speed.y += 500 * GetFrameTime();
+
+	player.position.y += player.speed.y * GetFrameTime();
+
 	if (IsKeyDown(KEY_UP))
-		player.position.y -= 0.1f;
+		player.speed.y = -200.f;
 
 	if (IsKeyDown(KEY_DOWN))
 		player.position.y += 0.1f;

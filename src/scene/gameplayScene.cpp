@@ -3,7 +3,7 @@
 #include "objects/player.h"
 #include "objects/obstacle.h"
 #include "objects/utils.h"
-
+#include "scene/menuScene.h"
 
 Player player;
 Obstacle obstacle;
@@ -24,6 +24,7 @@ void updateGameplay()
 	updateObstacle(obstacle);
 
 	checkCollision();
+
 }
 
 void checkCollision()
@@ -33,7 +34,9 @@ void checkCollision()
 		player.position.y - player.radius + player.radius * 2 >= obstacle.position.y &&
 		player.position.y - player.radius <= obstacle.position.y + obstacle.height))
 	{
-		CloseWindow();
+
+		initObstacle(obstacle);
+		player.life--;
 	}
 }
 
@@ -43,6 +46,9 @@ void drawGameplay()
 	drawObstacle(obstacle);
 
 	DrawText("0.1", screenWidth - 50, screenHeight - 50, 30, RED);
+
+	DrawText(TextFormat(" Life %01i", player.life), screenWidthMin , screenHeightMin , 30, RED);
+
 }
 
 void resetGame()

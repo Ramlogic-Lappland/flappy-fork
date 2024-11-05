@@ -8,6 +8,7 @@ struct Player
 {
     Vector2 position;
     Vector2 speed;
+
     float radius;
     bool isActive;
     int life;
