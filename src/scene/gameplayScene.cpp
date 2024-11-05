@@ -29,15 +29,22 @@ void updateGameplay()
 
 void checkCollision()
 {
-	if ((player.position.x - player.radius + player.radius * 2 >= obstacle.position.x &&
+	bool collisionTop = (player.position.x + player.radius >= obstacle.position.x &&
 		player.position.x - player.radius <= obstacle.position.x + obstacle.width &&
-		player.position.y - player.radius + player.radius * 2 >= obstacle.position.y &&
-		player.position.y - player.radius <= obstacle.position.y + obstacle.height))
-	{
+		player.position.y + player.radius >= 0 &&
+		player.position.y - player.radius <= obstacle.topHeight);
 
-		initObstacle(obstacle);
-		player.life--;
+	bool collisionBottom = (player.position.x + player.radius >= obstacle.position.x &&
+		player.position.x - player.radius <= obstacle.position.x + obstacle.width &&
+		player.position.y + player.radius >= obstacle.topHeight + obstacle.gap &&
+		player.position.y - player.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
+
+	if (collisionTop || collisionBottom)
+	{
+		initObstacle(obstacle); 
+		player.life--;          
 	}
+
 }
 
 void drawGameplay()

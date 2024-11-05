@@ -50,27 +50,27 @@
 
     void drawPlayTitle()
     {
-        DrawText(TextFormat("PLAY"), screenWidth / 2 - 40, 360, 30, RED);
+        DrawText(TextFormat("PLAY"), screenWidth / 2 - 40, 210, 30, RED);
     }
 
     void drawControlTitle()
     {
-        DrawText(TextFormat("CREDITS"), screenWidth / 2 - 70, 460, 30, RED);
+        DrawText(TextFormat("CREDITS"), screenWidth / 2 - 70, 410, 30, RED);
     }
 
     void drawCreditsTitle()
     {
-        DrawText(TextFormat("CONTROLS"), screenWidth / 2 - 80, 560, 30, RED);
+        DrawText(TextFormat("CONTROLS"), screenWidth / 2 - 80, 310, 30, RED);
     }
 
     void drawExitTitle()
     {
-        DrawText(TextFormat("EXIT"), screenWidth / 2 - 40, 660, 30, RED);
+        DrawText(TextFormat("EXIT"), screenWidth / 2 - 40, 510, 30, RED);
     }
 
     void drawBackToMenuTitle()
     {
-        DrawText(TextFormat("MENU"), screenWidth / 2 + 110, 710, 30, RED);
+        DrawText(TextFormat("MENU"), screenWidth / 2 + 110, 510, 30, RED);
     }
 
     void drawPauseButtonTitle()

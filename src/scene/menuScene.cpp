@@ -6,24 +6,25 @@
 #include "objects/utils.h"
 #include "scene/gameplayScene.h"
 
-extern Texture2D background;
-extern Music menuMusic;
+//extern Texture2D background;
+//extern Music menuMusic;
 
 void initMenu()
 {
-	background = LoadTexture("res/background.png");
+	//background = LoadTexture("res/background.png");
+	//
+	//menuMusic = LoadMusicStream("res/menuMusic.mp3");
+	//
+	//SetMusicVolume(menuMusic, 0.5f);
+	//
+	//PlayMusicStream(menuMusic);
 
-	menuMusic = LoadMusicStream("res/menuMusic.mp3");
+	initButton(button, screenWidth / 2 - 100, 200);
+	initButton(controls, screenWidth / 2 - 100, 300);
+	initButton(credits, screenWidth / 2 - 100, 400);
+	initButton(exitGame, screenWidth / 2 - 100, 500);
 
-	SetMusicVolume(menuMusic, 0.5f);
-
-	PlayMusicStream(menuMusic);
-
-	initButton(button, screenWidth / 2 - 100, 350);
-	initButton(controls, screenWidth / 2 - 100, 550);
-	initButton(credits, screenWidth / 2 - 100, 450);
-	initButton(exitGame, screenWidth / 2 - 100, 650);
-	initButton(backToMenu, screenWidth / 2 + 50, 700);
+	initButton(backToMenu, screenWidth / 2 + 50, 500);
 	initButton(resumeGame, screenWidth / 2 - 200, 700);
 	initButton(playAgain, screenWidth / 2 - 200, 700);
 
@@ -33,11 +34,11 @@ void initMenu()
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 {
-	UpdateMusicStream(menuMusic);
+	//UpdateMusicStream(menuMusic);
 
-	DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	DrawText(TextFormat("FLAPPY BIRD"), screenWidth / 2 - 250, 150, 100, RED);
+	DrawText(TextFormat("FLAPPY BIRD"), screenWidth / 2 - 170, screenHeightMin + 50, 50, RED);
 
 	drawButton(button);
 	drawButton(controls);
@@ -52,8 +53,8 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 	if (isButtonPressed(button))
 	{
 		menuOn = false;
-
-		resetGame();
+	
+		//resetGame();
 	}
 
 	if (isButtonPressed(controls))
@@ -70,7 +71,7 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 	if (isButtonPressed(exitGame))
 	{
-		StopMusicStream(menuMusic);
+		//StopMusicStream(menuMusic);
 		CloseWindow();
 	}
 
@@ -84,9 +85,9 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 void drawConstrols(bool& menuOn, bool& controlsOn)
 {
-	DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	UpdateMusicStream(menuMusic);
+	//UpdateMusicStream(menuMusic);
 
 	DrawText("CONTROLS", screenWidth / 2 - 100, 100, 40, WHITE);
 
@@ -104,9 +105,9 @@ void drawConstrols(bool& menuOn, bool& controlsOn)
 
 void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 {
-	DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	UpdateMusicStream(menuMusic);
+	//UpdateMusicStream(menuMusic);
 
 	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 50, 30, WHITE);
 
@@ -117,15 +118,15 @@ void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 
 	DrawText("Background By: ", screenWidth / 2 - 250, 250, 30, WHITE);
 
-	DrawText("Ansimuz in ITCH.IO", screenWidth / 2 + 50, 250, 30, WHITE);
+	DrawText(" in ITCH.IO", screenWidth / 2 + 50, 250, 30, WHITE);
 
-	DrawText("Spaceship By: ", screenWidth / 2 - 250, 350, 30, WHITE);
+	DrawText("Player By: ", screenWidth / 2 - 250, 350, 30, WHITE);
 
-	DrawText("Pixel By Pixel in ITCH.IO", screenWidth / 2 + 50, 350, 30, WHITE);
+	DrawText(" in ITCH.IO", screenWidth / 2 + 50, 350, 30, WHITE);
 
-	DrawText("Bullets By: ", screenWidth / 2 - 250, 450, 30, WHITE);
+	DrawText("Obstacle By: ", screenWidth / 2 - 250, 450, 30, WHITE);
 
-	DrawText("Ho88it in ITCH.IO", screenWidth / 2 + 50, 450, 30, WHITE);
+	DrawText(" in ITCH.IO", screenWidth / 2 + 50, 450, 30, WHITE);
 
 	DrawText("Library: ", screenWidth / 2 - 250, 550, 30, WHITE);
 
@@ -139,9 +140,9 @@ void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 
 void drawSecondCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 {
-	DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	UpdateMusicStream(menuMusic);
+	//UpdateMusicStream(menuMusic);
 
 	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 50, 30, WHITE);
 
@@ -150,25 +151,25 @@ void drawSecondCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 	DrawText("Valentin Villar", screenWidth / 2 + 50, 150, 30, WHITE);
 	DrawText("Tronik in SUNO AI ", screenWidth / 2 + 50, 180, 30, WHITE);
 
-	DrawText("Points SFX By: ", screenWidth / 2 - 250, 250, 30, WHITE);
+	DrawText(" SFX By: ", screenWidth / 2 - 250, 250, 30, WHITE);
 
-	DrawText("Zapslat", screenWidth / 2 + 50, 250, 30, WHITE);
+	DrawText("", screenWidth / 2 + 50, 250, 30, WHITE);
 
-	DrawText("Explosion SFX By: ", screenWidth / 2 - 250, 350, 30, WHITE);
+	DrawText(" SFX By: ", screenWidth / 2 - 250, 350, 30, WHITE);
 
-	DrawText("Zapslat", screenWidth / 2 + 50, 350, 30, WHITE);
+	DrawText("", screenWidth / 2 + 50, 350, 30, WHITE);
 
-	DrawText("lose SFX By: ", screenWidth / 2 - 250, 450, 30, WHITE);
+	DrawText(" SFX By: ", screenWidth / 2 - 250, 450, 30, WHITE);
 
-	DrawText("Zapslat", screenWidth / 2 + 50, 450, 30, WHITE);
+	DrawText("", screenWidth / 2 + 50, 450, 30, WHITE);
 
-	DrawText("Boost SFX by: ", screenWidth / 2 - 250, 550, 30, WHITE);
+	DrawText(" SFX by: ", screenWidth / 2 - 250, 550, 30, WHITE);
 
-	DrawText("Zapslat", screenWidth / 2 + 50, 550, 30, WHITE);
+	DrawText("", screenWidth / 2 + 50, 550, 30, WHITE);
 
-	DrawText("Shoot SFX by: ", screenWidth / 2 - 250, 650, 30, WHITE);
+	DrawText(" SFX by: ", screenWidth / 2 - 250, 650, 30, WHITE);
 
-	DrawText("Zapslat", screenWidth / 2 + 50, 650, 30, WHITE);
+	DrawText("", screenWidth / 2 + 50, 650, 30, WHITE);
 
 	drawPageButton(creditsOn, creditsOn2);
 
@@ -190,9 +191,9 @@ void drawBackToMenu(bool& boolTrue, bool& boolFalse)
 
 void drawPause(bool& menuOn, bool& pauseOn)
 {
-	DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	UpdateMusicStream(menuMusic);
+	//UpdateMusicStream(menuMusic);
 
 	DrawText(TextFormat("Pause game"), screenWidth / 2 - 150, screenHeight / 2 - 100, 50, WHITE);
 
@@ -230,9 +231,9 @@ void drawPageButton(bool& creditsOn, bool& creditsOn2)
 
 void drawGameOver(bool& menuOn, bool& gameOver)
 {
-	DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	UpdateMusicStream(menuMusic);
+	//UpdateMusicStream(menuMusic);
 
 	DrawText(TextFormat("Game Over"), screenWidth / 2 - 150, screenHeight / 2 - 100, 50, WHITE);
 
@@ -250,8 +251,8 @@ void drawGameOver(bool& menuOn, bool& gameOver)
 
 void unloadMenu()
 {
-	UnloadTexture(background);
-	UnloadMusicStream(menuMusic);
+	//UnloadTexture(background);
+	//UnloadMusicStream(menuMusic);
 }
 
 

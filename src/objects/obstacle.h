@@ -9,10 +9,10 @@ struct Obstacle
     Vector2 position;
     Vector2 speed;
     int width;
-    int height;
+    int topHeight;
+    int gap;
+    int bottomHeight;
 };
-
- 
 
 //extern Sound loseSfx;
 //extern Sound boostSfx;
