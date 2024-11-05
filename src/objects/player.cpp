@@ -34,8 +34,21 @@ void updatePlayer(Player& player)
 	if (IsKeyDown(KEY_UP))
 		player.speed.y = -200.f;
 
-	if (IsKeyDown(KEY_DOWN))
-		player.position.y += 0.1f;
+	if (player.position.y > screenHeight)
+	{
+		player.life--;
+
+		player.position = { static_cast<float>(screenWidthMin) + 200,
+		   static_cast<float>(screenHeight) / 2.0f };
+
+		player.speed = { 0.0f, 0.0f };
+	}
+
+	if (player.position.y < screenHeightMin + player.radius)
+	{
+		player.position.y = static_cast<float>(screenHeightMin) + player.radius;
+	}
+
 }
 
 
