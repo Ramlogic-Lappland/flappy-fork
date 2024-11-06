@@ -25,11 +25,11 @@ void initMenu()
 	initButton(exitGame, screenWidth / 2 - 100, 500);
 
 	initButton(backToMenu, screenWidth / 2 + 50, 500);
-	initButton(resumeGame, screenWidth / 2 - 200, 700);
-	initButton(playAgain, screenWidth / 2 - 200, 700);
+	initButton(resumeGame, screenWidth / 2 - 200, 500);
+	initButton(playAgain, screenWidth / 2 - 200, 500);
 
-	initPageButton(page1, screenWidth / 2 - 150, 700);
-	initPageButton(page2, screenWidth / 2 - 50, 700);
+	initPageButton(page1, screenWidth / 2 - 150, 500);
+	initPageButton(page2, screenWidth / 2 - 50, 500);
 }
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
@@ -37,6 +37,8 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 	//UpdateMusicStream(menuMusic);
 
 	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
+
+	ClearBackground(BLACK);
 
 	DrawText(TextFormat("FLAPPY BIRD"), screenWidth / 2 - 170, screenHeightMin + 50, 50, RED);
 
@@ -54,7 +56,7 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 	{
 		menuOn = false;
 	
-		//resetGame();
+		resetGame();
 	}
 
 	if (isButtonPressed(controls))
@@ -89,6 +91,8 @@ void drawConstrols(bool& menuOn, bool& controlsOn)
 
 	//UpdateMusicStream(menuMusic);
 
+	ClearBackground(BLACK);
+
 	DrawText("CONTROLS", screenWidth / 2 - 100, 100, 40, WHITE);
 
 	DrawText("Left Click: ", screenWidth / 2 - 220, 250, 30, WHITE);
@@ -108,6 +112,8 @@ void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
 	//UpdateMusicStream(menuMusic);
+
+	ClearBackground(BLACK);
 
 	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 50, 30, WHITE);
 
@@ -144,6 +150,8 @@ void drawSecondCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 
 	//UpdateMusicStream(menuMusic);
 
+	ClearBackground(BLACK);
+
 	DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 50, 30, WHITE);
 
 	DrawText("Menu Music: ", screenWidth / 2 - 250, 150, 30, WHITE);
@@ -178,6 +186,8 @@ void drawSecondCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 
 void drawBackToMenu(bool& boolTrue, bool& boolFalse)
 {
+	ClearBackground(BLACK);
+
 	drawButton(backToMenu);
 
 	drawBackToMenuTitle();
@@ -195,6 +205,8 @@ void drawPause(bool& menuOn, bool& pauseOn)
 
 	//UpdateMusicStream(menuMusic);
 
+	ClearBackground(BLACK);
+
 	DrawText(TextFormat("Pause game"), screenWidth / 2 - 150, screenHeight / 2 - 100, 50, WHITE);
 
 	DrawText(TextFormat("What Will You Do"), screenWidth / 2 - 200, screenHeight / 2 - 30, 50, WHITE);
@@ -210,6 +222,7 @@ void drawPause(bool& menuOn, bool& pauseOn)
 
 void drawPageButton(bool& creditsOn, bool& creditsOn2)
 {
+
 	drawButton(page1);
 	drawPage1Title();
 
@@ -233,7 +246,9 @@ void drawGameOver(bool& menuOn, bool& gameOver)
 {
 	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
-	//UpdateMusicStream(menuMusic);
+	//UpdateMusicStream(menuMusic); 
+
+	ClearBackground(BLACK);
 
 	DrawText(TextFormat("Game Over"), screenWidth / 2 - 150, screenHeight / 2 - 100, 50, WHITE);
 
@@ -243,8 +258,10 @@ void drawGameOver(bool& menuOn, bool& gameOver)
 	drawPlayAgainTitle();
 
 	if (isButtonPressed(playAgain))
+	{
 		gameOver = false;
-	resetGame();
+		resetGame();
+	}
 
 	drawBackToMenu(menuOn, gameOver);
 }

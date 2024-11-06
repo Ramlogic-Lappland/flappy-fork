@@ -65,7 +65,7 @@ void Initialization()
 void update()
 {
 	if (!menuOn && !gameOver && !creditsOn && !creditsOn2 && !controlsOn && !pauseOn)
-		updateGameplay();
+		updateGameplay(menuOn, gameOver);
 
 	
 }

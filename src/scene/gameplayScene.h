@@ -4,7 +4,7 @@ void initGameplay();
 
 void loadGameplay();
 
-void updateGameplay();
+void updateGameplay(bool& menuOn, bool& gameOver);
 
 void checkCollision();
 

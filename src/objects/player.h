@@ -12,9 +12,10 @@ struct Player
     float radius;
     bool isActive;
     int life;
-    float respawnTime;
     int point;
     int lastPoints;
+    int grvity;
+
 };
 
  

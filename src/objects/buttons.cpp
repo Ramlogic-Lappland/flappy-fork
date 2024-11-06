@@ -80,20 +80,20 @@
 
     void drawResumeGameTitle()
     {
-        DrawText(TextFormat("RESUME"), screenWidth / 2 - 160, 710, 30, RED);
+        DrawText(TextFormat("RESUME"), screenWidth / 2 - 160, 510, 30, RED);
     }
 
     void drawPlayAgainTitle()
     {
-        DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 - 190, 710, 30, RED);
+        DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 - 190, 510, 30, RED);
     }
 
     void drawPage1Title()
     {
-        DrawText(TextFormat("1"), screenWidth / 2 - 130, 710, 30, RED);
+        DrawText(TextFormat("1"), screenWidth / 2 - 130, 510, 30, RED);
     }
 
     void drawPage2Title()
     {
-        DrawText(TextFormat("2"), screenWidth / 2 - 30, 710, 30, RED);
+        DrawText(TextFormat("2"), screenWidth / 2 - 30, 510, 30, RED);
     }

@@ -16,9 +16,10 @@ void initPlayer(Player& player)
 	player.radius = 20.0f;
 	player.isActive = true;
 	player.life = 3;
-	player.respawnTime = 1.0f;
 	
 	player.point = 0;
+
+	player.grvity = 500;
 }
 
 void loadPlayer()
@@ -27,11 +28,11 @@ void loadPlayer()
 
 void updatePlayer(Player& player)
 {
-	player.speed.y += 500 * GetFrameTime();
+	player.speed.y += player.grvity * GetFrameTime();
 
 	player.position.y += player.speed.y * GetFrameTime();
 
-	if (IsKeyDown(KEY_UP))
+	if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE))
 		player.speed.y = -200.f;
 
 	if (player.position.y > screenHeight)
@@ -49,8 +50,8 @@ void updatePlayer(Player& player)
 		player.position.y = static_cast<float>(screenHeightMin) + player.radius;
 	}
 
-}
 
+}
 
 void drawPlayer(Player& player)
 {

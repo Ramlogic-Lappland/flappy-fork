@@ -48,6 +48,12 @@
     <ClCompile Include="src\objects\buttons.cpp">
       <Filter>Archivos de origen\objets</Filter>
     </ClCompile>
+    <ClCompile Include="src\scene\menuScene.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game.cpp">
+      <Filter>Archivos de origen\manage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\scene\gameplayScene.h">
@@ -64,6 +70,12 @@
     </ClInclude>
     <ClInclude Include="src\objects\buttons.h">
       <Filter>Archivos de encabezado\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\menuScene.h">
+      <Filter>Archivos de encabezado\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game.h">
+      <Filter>Archivos de encabezado\manage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

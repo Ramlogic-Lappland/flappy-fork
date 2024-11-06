@@ -18,12 +18,18 @@ void loadGameplay()
 {
 }
 
-void updateGameplay()
+void updateGameplay(bool& menuOn, bool& gameOver)
 {
 	updatePlayer(player);
 	updateObstacle(obstacle);
 
 	checkCollision();
+
+	if (player.life <= 0)
+	{
+		gameOver = true;
+		drawGameOver(menuOn, gameOver);
+	}
 
 }
 
@@ -49,6 +55,7 @@ void checkCollision()
 
 void drawGameplay()
 {
+	ClearBackground(BLACK);
 	drawPlayer(player);
 	drawObstacle(obstacle);
 
@@ -60,6 +67,8 @@ void drawGameplay()
 
 void resetGame()
 {
+	initPlayer(player);
+	initObstacle(obstacle);
 }
 
 void unloadGameplay()
