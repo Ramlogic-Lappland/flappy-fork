@@ -59,10 +59,7 @@ void drawGameplay()
 	drawPlayer(player);
 	drawObstacle(obstacle);
 
-	DrawText("0.1", screenWidth - 50, screenHeight - 50, 30, RED);
-
 	DrawText(TextFormat(" Life %01i", player.life), screenWidthMin , screenHeightMin , 30, RED);
-
 }
 
 void resetGame()

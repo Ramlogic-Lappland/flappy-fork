@@ -40,7 +40,7 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 	ClearBackground(BLACK);
 
-	DrawText(TextFormat("FLAPPY BIRD"), screenWidth / 2 - 170, screenHeightMin + 50, 50, RED);
+	DrawText(TextFormat("FLIYING GUADS"), screenWidth / 2 - 170, screenHeightMin + 50, 50, RED);
 
 	drawButton(button);
 	drawButton(controls);
@@ -83,6 +83,8 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 		creditsOn = false;
 		controlsOn = false;
 	}
+
+	DrawText("0.2", screenWidth - 50, screenHeight - 50, 30, RED);
 }
 
 void drawConstrols(bool& menuOn, bool& controlsOn)
