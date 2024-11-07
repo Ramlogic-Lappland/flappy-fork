@@ -48,11 +48,11 @@
     <ClCompile Include="src\objects\buttons.cpp">
       <Filter>Archivos de origen\objets</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\menuScene.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\game.cpp">
       <Filter>Archivos de origen\manage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\menuScene.cpp">
+      <Filter>Archivos de origen\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

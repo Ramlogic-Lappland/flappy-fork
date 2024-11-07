@@ -6,7 +6,7 @@
 #include "scene/menuScene.h"
 
 static void Initialization();
-//static void loadGame();
+static void loadGame();
 static void update();
 static void draw();
 //static void unloadGame();
@@ -33,7 +33,7 @@ void run()
 {
 	Initialization();
 
-	//loadGame();
+	loadGame();
 
 	while (!WindowShouldClose())
 	{
@@ -48,7 +48,7 @@ void run()
 
 void Initialization()
 {
-	InitWindow(screenWidth, screenHeight, "asteroids");
+	InitWindow(screenWidth, screenHeight, "flying guads");
 
 	//InitAudioDevice();
 
@@ -57,10 +57,10 @@ void Initialization()
 	initMenu();
 }
 
-//void loadGame()
-//{
-//	loadGameplay();
-//}
+void loadGame()
+{
+	loadGameplay();
+}
 
 void update()
 {

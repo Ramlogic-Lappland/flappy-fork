@@ -16,6 +16,7 @@ void initGameplay()
 
 void loadGameplay()
 {
+	loadPlayer(player);
 }
 
 void updateGameplay(bool& menuOn, bool& gameOver)
@@ -48,14 +49,14 @@ void checkCollision()
 	if (collisionTop || collisionBottom)
 	{
 		initObstacle(obstacle); 
-		player.life--;          
+		//player.life--;          
 	}
 
 }
 
 void drawGameplay()
 {
-	ClearBackground(BLACK);
+	ClearBackground(GREEN);
 	drawPlayer(player);
 	drawObstacle(obstacle);
 

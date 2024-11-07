@@ -15,7 +15,13 @@ struct Player
     int point;
     int lastPoints;
     int grvity;
+    int currentFrame;
+    int framesCounter;
+    int framesSpeed;
+    float frameTimeAccum;
 
+    Rectangle frameRec;
+    Texture2D texture;
 };
 
  
@@ -23,7 +29,7 @@ struct Player
 //extern Sound boostSfx;
 
 void initPlayer(Player& player);
-void loadPlayer();
+void loadPlayer(Player& player);
 void updatePlayer(Player& player);
 void drawPlayer(Player& player);
-void unloadPlayer();
+void unloadPlayer(Player& player);

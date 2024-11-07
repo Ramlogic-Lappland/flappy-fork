@@ -130,7 +130,7 @@ void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 
 	DrawText("Player By: ", screenWidth / 2 - 250, 350, 30, WHITE);
 
-	DrawText(" in ITCH.IO", screenWidth / 2 + 50, 350, 30, WHITE);
+	DrawText("My self with Piskel", screenWidth / 2 + 50, 350, 30, WHITE);
 
 	DrawText("Obstacle By: ", screenWidth / 2 - 250, 450, 30, WHITE);
 

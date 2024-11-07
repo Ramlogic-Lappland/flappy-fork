@@ -2,7 +2,6 @@
 
 #include "objects/utils.h"
 
-//static Texture2D spaceShip;
 //Sound loseSfx;
 //Sound boostSfx;
 
@@ -20,10 +19,18 @@ void initPlayer(Player& player)
 	player.point = 0;
 
 	player.grvity = 500;
+
+	player.currentFrame = 0;
+	player.framesCounter = 0;
+	player.framesSpeed = 8;
+	player.frameTimeAccum = 0.0f;
+
+	player.frameRec = { 0.0f, 0.0f, 64.0f, 64.0f };
 }
 
-void loadPlayer()
+void loadPlayer(Player& player)
 {
+	player.texture = LoadTexture("res/spritesheet.png");
 }
 
 void updatePlayer(Player& player)
@@ -50,14 +57,31 @@ void updatePlayer(Player& player)
 		player.position.y = static_cast<float>(screenHeightMin) + player.radius;
 	}
 
+	player.frameTimeAccum += GetFrameTime();
 
+	if (player.frameTimeAccum >= (1.0f / player.framesSpeed))
+	{
+		player.frameTimeAccum = 0.0f; 
+
+		player.currentFrame++;
+
+		if (player.currentFrame > 3)
+			player.currentFrame = 0; 
+
+		player.frameRec.y = static_cast<float>(player.currentFrame) * 64.0f;
+	}
 }
 
 void drawPlayer(Player& player)
 {
 	DrawCircle(static_cast<int>(player.position.x), static_cast<int>(player.position.y), player.radius, BLUE);
+	
+	DrawTextureRec(player.texture, player.frameRec,
+		{ player.position.x - player.frameRec.width / 2,
+		  player.position.y - player.frameRec.height / 2 }, WHITE);
 }
 
-void unloadPlayer()
+void unloadPlayer(Player& player)
 {
+	UnloadTexture(player.texture);
 }
