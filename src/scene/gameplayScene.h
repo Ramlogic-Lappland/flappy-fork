@@ -10,6 +10,10 @@ void checkCollision();
 
 void drawGameplay();
 
+void initBackground();
+
+void updateBackground();
+
 void drawParalaxBackgournd();
 
 void resetGame();

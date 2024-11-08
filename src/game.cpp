@@ -45,7 +45,7 @@ void run()
 	close();
 }
 
-void Initialization()
+static void Initialization()
 {
 	InitWindow(screenWidth, screenHeight, "flying guads");
 
@@ -56,12 +56,12 @@ void Initialization()
 	initMenu();
 }
 
-void loadGame()
+static void loadGame()
 {
 	loadGameplay();
 }
 
-void update()
+static void update()
 {
 	if (!menuOn && !gameOver && !creditsOn && !creditsOn2 && !controlsOn && !pauseOn)
 		updateGameplay(menuOn, gameOver);
@@ -69,7 +69,7 @@ void update()
 	
 }
 
-void draw()
+static void draw()
 {
 	BeginDrawing();
 
@@ -105,13 +105,13 @@ void draw()
 	EndDrawing();
 }
 
-void unloadGame()
+static void unloadGame()
 {
 	unloadMenu();
 	unloadGameplay();
 }
 
-void close()
+static void close()
 {
 	CloseAudioDevice();
 	CloseWindow();

@@ -8,15 +8,18 @@
 Player player;
 Obstacle obstacle;
 static Texture2D background;
+static Texture2D waterReflection;
 static Texture2D clouds;
 static Texture2D moon;
 
 static float scrollingBack = 0.0f;
+static float scrollingMidBack = 0.0f;
 static float scrollingMid = 0.0f;
 static float scrollingFront = 0.0f;
 
 void initGameplay()
 {
+	initBackground();
 	initPlayer(player);
 	initObstacle(obstacle);
 }
@@ -39,6 +42,7 @@ void updateGameplay(bool& menuOn, bool& gameOver)
 		drawGameOver(menuOn, gameOver);
 	}
 
+	updateBackground();
 }
 
 void checkCollision()
@@ -56,7 +60,7 @@ void checkCollision()
 	if (collisionTop || collisionBottom)
 	{
 		initObstacle(obstacle); 
-		player.life--;          
+		//player.life--;          
 	}
 
 }
@@ -64,7 +68,6 @@ void checkCollision()
 void drawGameplay()
 {
 	drawParalaxBackgournd();
-
 	ClearBackground(GREEN);
 	drawPlayer(player);
 	drawObstacle(obstacle);
@@ -72,25 +75,37 @@ void drawGameplay()
 	DrawText(TextFormat(" Life %01i", player.life), screenWidthMin , screenHeightMin , 30, RED);
 }
 
-void drawParalaxBackgournd()
+void initBackground()
 {
 	background = LoadTexture("res/Ocean_6/backgorund.png");
+	waterReflection = LoadTexture("res/Ocean_6/reflection.png");
 	clouds = LoadTexture("res/Ocean_6/clouds.png");
 	moon = LoadTexture("res/Ocean_6/moon.png");
+}
 
-	scrollingBack -= 0.1f;
-	scrollingMid -= 0.15f;
-	scrollingFront -= 0.15f;
+void updateBackground()
+{
+	scrollingBack -= 100.0f * GetFrameTime();
+	scrollingMidBack -= 100.0f * GetFrameTime();
+	scrollingMid -= 150.0f * GetFrameTime();
+	scrollingFront -= 150.0f * GetFrameTime();
 
-	if (scrollingBack <= -background.width * 2) scrollingBack = 0;
-	if (scrollingMid <= -clouds.width * 2) scrollingMid = 0;
-	if (scrollingFront <= -moon.width * 2) scrollingFront = 0;
+	if (scrollingBack <= -background.width * 2) scrollingBack = static_cast<float>(screenWidthMin);
+	if (scrollingMidBack <= -waterReflection.width * 2) scrollingBack = static_cast<float>(screenWidthMin);
+	if (scrollingMid <= -clouds.width * 2) scrollingMid = static_cast<float>(screenWidthMin);
+	if (scrollingFront <= -moon.width * 2) scrollingFront = static_cast<float>(screenWidthMin);
+}
 
+void drawParalaxBackgournd()
+{
 	DrawTextureEx(background, Vector2{ scrollingBack, static_cast<float>(screenHeightMin) }, 0.0f, 2.0f, WHITE);
 	DrawTextureEx(background, Vector2{ background.width * 2 + scrollingBack, static_cast<float>(screenHeightMin) }, 0.0f, 2.0f, WHITE);
 
-	DrawTextureEx(moon, Vector2{ scrollingFront, 20 }, 0.0f, 2.0f, WHITE);
-	DrawTextureEx(moon, Vector2{ moon.width * 2 + scrollingFront, 20 }, 0.0f, 2.0f, WHITE);
+	DrawTextureEx(waterReflection, Vector2{ scrollingMidBack, static_cast<float>(screenHeightMin) }, 0.0f, 2.0f, WHITE);
+	DrawTextureEx(waterReflection, Vector2{ waterReflection.width * 2 + scrollingMidBack, static_cast<float>(screenHeightMin) }, 0.0f, 2.0f, WHITE);
+
+	DrawTextureEx(moon, Vector2{ scrollingFront, static_cast<float>(screenHeightMin) + 20 }, 0.0f, 2.0f, WHITE);
+	DrawTextureEx(moon, Vector2{ moon.width * 2 + scrollingFront, static_cast<float>(screenHeightMin) + 20 }, 0.0f, 2.0f, WHITE);
 
 	DrawTextureEx(clouds, Vector2{ scrollingMid, static_cast<float>(screenHeightMin)}, 0.0f, 2.0f, WHITE);
 	DrawTextureEx(clouds, Vector2{ clouds.width * 2 + scrollingMid, static_cast<float>(screenHeightMin)}, 0.0f, 2.0f, WHITE);	
