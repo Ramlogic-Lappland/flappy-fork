@@ -10,6 +10,8 @@ void checkCollision();
 
 void drawGameplay();
 
+void drawParalaxBackgournd();
+
 void resetGame();
 
 void unloadGameplay();

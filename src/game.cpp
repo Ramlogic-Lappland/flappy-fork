@@ -9,7 +9,7 @@ static void Initialization();
 static void loadGame();
 static void update();
 static void draw();
-//static void unloadGame();
+static void unloadGame();
 static void close();
 
 int screenWidth = 800;
@@ -25,7 +25,6 @@ bool exitOn = false;
 bool gameOver = false;
 bool pauseOn = false;
 
-//Texture2D background;
 //Music menuMusic;
 //Music gameplayMusic;
 
@@ -41,7 +40,7 @@ void run()
 		draw();
 	}
 
-	//unloadGame();
+	unloadGame();
 
 	close();
 }
@@ -106,12 +105,11 @@ void draw()
 	EndDrawing();
 }
 
-//void unloadGame()
-//{
-//	UnloadTexture(background);
-//	unloadMenu();
-//	unloadGameplay();
-//}
+void unloadGame()
+{
+	unloadMenu();
+	unloadGameplay();
+}
 
 void close()
 {
