@@ -4,19 +4,22 @@
 
 #include "objects/player.h"
 
-struct Obstacle
+namespace Obstacles
 {
-    Vector2 position;
-    Vector2 speed;
-    int width;
-    int topHeight;
-    int gap;
-    int bottomHeight;
-};
+    struct Obstacle
+    {
+        Vector2 position;
+        Vector2 speed;
+        int width;
+        int topHeight;
+        int gap;
+        int bottomHeight;
+    };
 
 
-void initObstacle(Obstacle& o);
-void loadObstacle();
-void updateObstacle(Obstacle& o);
-void drawObstacle(Obstacle& o);
-void unloadObstacle();
+    void initObstacle(Obstacle& o);
+    void loadObstacle();
+    void updateObstacle(Obstacle& o);
+    void drawObstacle(Obstacle& o);
+    void unloadObstacle();
+}

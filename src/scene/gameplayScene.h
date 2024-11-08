@@ -1,21 +1,25 @@
 #pragma once
 
-void initGameplay();
+namespace GameplayScene
+{
+	void initGameplay();
 
-void loadGameplay();
+	void loadGameplay();
 
-void updateGameplay(bool& menuOn, bool& gameOver);
+	void updateGameplay(bool& menuOn, bool& gameOver);
 
-void checkCollision();
+	void checkCollision();
 
-void drawGameplay(bool& menuOn, bool& pauseOn);
+	void drawGameplay(bool& menuOn, bool& pauseOn);
 
-void initBackground();
+	void initBackground();
 
-void updateBackground();
+	void updateBackground();
 
-void drawParalaxBackgournd();
+	void drawParalaxBackgournd();
 
-void resetGame();
+	void resetGame();
 
-void unloadGameplay();
+	void unloadGameplay();
+
+}

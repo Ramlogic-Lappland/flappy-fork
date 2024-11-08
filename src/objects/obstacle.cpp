@@ -1,45 +1,52 @@
 #include "objects/obstacle.h"
 
 #include "objects/utils.h"
+#include "game.h"
 
-void initObstacle(Obstacle& o)
+using namespace Game;
+
+namespace Obstacles
 {
-	o.position = { static_cast<float>(screenWidth),
-				   static_cast<float>(screenHeightMin) };
-
-	o.speed = { 500.0f, 0.0f };
-
-	o.width = 30;
-
-	o.gap = 100;
-
-	o.topHeight = GetRandomValue(50, screenHeight - o.gap - 50);  
-	o.bottomHeight = screenHeight - o.topHeight - o.gap;  
-}
-
-void loadObstacle()
-{
-}
-
-void updateObstacle(Obstacle& o)
-{
-	if (o.position.x < static_cast<float>(screenWidthMin))
+	void initObstacle(Obstacle& o)
 	{
-		o.position.x = static_cast<float>(screenWidth);
+		o.position = { static_cast<float>(screenWidth),
+					   static_cast<float>(screenHeightMin) };
+
+		o.speed = { 500.0f, 0.0f };
+
+		o.width = 30;
+
+		o.gap = 100;
+
 		o.topHeight = GetRandomValue(50, screenHeight - o.gap - 50);
 		o.bottomHeight = screenHeight - o.topHeight - o.gap;
 	}
 
-	o.position.x -= o.speed.x * GetFrameTime();
-}
+	void loadObstacle()
+	{
+	}
 
-void drawObstacle(Obstacle& o)
-{
-	DrawRectangle(static_cast<int>(o.position.x), 0, o.width, o.topHeight, RED);
+	void updateObstacle(Obstacle& o)
+	{
+		if (o.position.x < static_cast<float>(screenWidthMin))
+		{
+			o.position.x = static_cast<float>(screenWidth);
+			o.topHeight = GetRandomValue(50, screenHeight - o.gap - 50);
+			o.bottomHeight = screenHeight - o.topHeight - o.gap;
+		}
 
-	DrawRectangle(static_cast<int>(o.position.x), static_cast<int>(o.topHeight + o.gap), o.width, o.bottomHeight, RED);
-}
+		o.position.x -= o.speed.x * GetFrameTime();
+	}
 
-void unloadObstacle()
-{
+	void drawObstacle(Obstacle& o)
+	{
+		DrawRectangle(static_cast<int>(o.position.x), 0, o.width, o.topHeight, RED);
+
+		DrawRectangle(static_cast<int>(o.position.x), static_cast<int>(o.topHeight + o.gap), o.width, o.bottomHeight, RED);
+	}
+
+	void unloadObstacle()
+	{
+	}
+
 }
