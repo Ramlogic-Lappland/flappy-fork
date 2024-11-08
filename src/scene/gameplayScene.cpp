@@ -4,6 +4,7 @@
 #include "objects/obstacle.h"
 #include "objects/utils.h"
 #include "scene/menuScene.h"
+#include "objects/buttons.h"
 
 Player player;
 Obstacle obstacle;
@@ -22,6 +23,8 @@ void initGameplay()
 	initBackground();
 	initPlayer(player);
 	initObstacle(obstacle);
+
+	initButton(pauseGame, screenWidth  - 200, 550);
 }
 
 void loadGameplay()
@@ -60,17 +63,26 @@ void checkCollision()
 	if (collisionTop || collisionBottom)
 	{
 		initObstacle(obstacle); 
-		//player.life--;          
+		player.life--;          
 	}
 
 }
 
-void drawGameplay()
+void drawGameplay(bool& menuOn, bool& pauseOn)
 {
 	drawParalaxBackgournd();
 	ClearBackground(GREEN);
 	drawPlayer(player);
 	drawObstacle(obstacle);
+
+	drawButton(pauseGame);
+	drawPauseButtonTitle();
+
+	if (isButtonPressed(pauseGame))
+	{
+		pauseOn = true;
+		menuOn = false;
+	}
 
 	DrawText(TextFormat(" Life %01i", player.life), screenWidthMin , screenHeightMin , 30, RED);
 }

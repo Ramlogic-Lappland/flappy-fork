@@ -65,8 +65,6 @@ static void update()
 {
 	if (!menuOn && !gameOver && !creditsOn && !creditsOn2 && !controlsOn && !pauseOn)
 		updateGameplay(menuOn, gameOver);
-
-	
 }
 
 static void draw()
@@ -99,7 +97,7 @@ static void draw()
 	}
 	else
 	{
-		drawGameplay();
+		drawGameplay(menuOn, pauseOn);
 	}
 
 	EndDrawing();

@@ -55,7 +55,6 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 	if (isButtonPressed(button))
 	{
 		menuOn = false;
-	
 		resetGame();
 	}
 
