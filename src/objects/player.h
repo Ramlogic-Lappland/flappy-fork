@@ -24,10 +24,6 @@ struct Player
     Texture2D texture;
 };
 
- 
-//extern Sound loseSfx;
-//extern Sound boostSfx;
-
 void initPlayer(Player& player);
 void loadPlayer(Player& player);
 void updatePlayer(Player& player);

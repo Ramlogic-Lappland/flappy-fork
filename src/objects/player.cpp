@@ -2,9 +2,6 @@
 
 #include "objects/utils.h"
 
-//Sound loseSfx;
-//Sound boostSfx;
-
 void initPlayer(Player& player)
 {
 	player.position = { static_cast<float>(screenWidthMin) + 200, 

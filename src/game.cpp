@@ -25,9 +25,6 @@ bool exitOn = false;
 bool gameOver = false;
 bool pauseOn = false;
 
-//Music menuMusic;
-//Music gameplayMusic;
-
 void run()
 {
 	Initialization();
@@ -48,8 +45,6 @@ void run()
 static void Initialization()
 {
 	InitWindow(screenWidth, screenHeight, "flying guads");
-
-	//InitAudioDevice();
 
 	initGameplay();
 

@@ -14,8 +14,6 @@ struct Obstacle
     int bottomHeight;
 };
 
-//extern Sound loseSfx;
-//extern Sound boostSfx;
 
 void initObstacle(Obstacle& o);
 void loadObstacle();

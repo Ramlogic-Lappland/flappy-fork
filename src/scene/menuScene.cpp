@@ -6,18 +6,10 @@
 #include "objects/utils.h"
 #include "scene/gameplayScene.h"
 
-//extern Texture2D background;
-//extern Music menuMusic;
 
 void initMenu()
 {
-	//background = LoadTexture("res/background.png");
-	//
-	//menuMusic = LoadMusicStream("res/menuMusic.mp3");
-	//
-	//SetMusicVolume(menuMusic, 0.5f);
-	//
-	//PlayMusicStream(menuMusic);
+
 
 	initButton(button, screenWidth / 2 - 100, 200);
 	initButton(controls, screenWidth / 2 - 100, 300);
@@ -34,9 +26,6 @@ void initMenu()
 
 void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 {
-	//UpdateMusicStream(menuMusic);
-
-	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
 
 	ClearBackground(BLACK);
 
@@ -72,7 +61,6 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 	if (isButtonPressed(exitGame))
 	{
-		//StopMusicStream(menuMusic);
 		CloseWindow();
 	}
 
@@ -88,9 +76,6 @@ void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
 
 void drawConstrols(bool& menuOn, bool& controlsOn)
 {
-	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
-
-	//UpdateMusicStream(menuMusic);
 
 	ClearBackground(BLACK);
 
@@ -110,9 +95,6 @@ void drawConstrols(bool& menuOn, bool& controlsOn)
 
 void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 {
-	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
-
-	//UpdateMusicStream(menuMusic);
 
 	ClearBackground(BLACK);
 
@@ -147,9 +129,6 @@ void drawCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 
 void drawSecondCredits(bool& menuOn, bool& creditsOn, bool& creditsOn2)
 {
-	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
-
-	//UpdateMusicStream(menuMusic);
 
 	ClearBackground(BLACK);
 
@@ -202,9 +181,6 @@ void drawBackToMenu(bool& boolTrue, bool& boolFalse)
 
 void drawPause(bool& menuOn, bool& pauseOn)
 {
-	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
-
-	//UpdateMusicStream(menuMusic);
 
 	ClearBackground(BLACK);
 
@@ -244,10 +220,7 @@ void drawPageButton(bool& creditsOn, bool& creditsOn2)
 }
 
 void drawGameOver(bool& menuOn, bool& gameOver)
-{
-	//DrawTextureEx(background, Vector2{ 0,0 }, 0.0f, 5.0f, WHITE);
-
-	//UpdateMusicStream(menuMusic); 
+{; 
 
 	ClearBackground(BLACK);
 
@@ -269,8 +242,7 @@ void drawGameOver(bool& menuOn, bool& gameOver)
 
 void unloadMenu()
 {
-	//UnloadTexture(background);
-	//UnloadMusicStream(menuMusic);
+
 }
 
 
