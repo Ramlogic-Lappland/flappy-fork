@@ -2,6 +2,8 @@
 
 namespace GameplayScene
 {
+	extern bool twoPlayers;
+
 	void initGameplay();
 
 	void loadGameplay();

@@ -12,11 +12,11 @@ namespace Obstacles
 		o.position = { static_cast<float>(screenWidth),
 					   static_cast<float>(screenHeightMin) };
 
-		o.speed = { 500.0f, 0.0f };
+		o.speed = { 400.0f, 0.0f };
 
 		o.width = 30;
 
-		o.gap = 100;
+		o.gap = 110;
 
 		o.topHeight = GetRandomValue(50, screenHeight - o.gap - 50);
 		o.bottomHeight = screenHeight - o.topHeight - o.gap;

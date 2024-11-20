@@ -10,7 +10,9 @@ namespace Buttons
 		int posY;
 	};
 
+
 	extern Button button;
+	extern Button twoPlayersButton;
 	extern Button controls;
 	extern Button credits;
 	extern Button backToMenu;
@@ -27,6 +29,7 @@ namespace Buttons
 	bool isButtonPressed(Button& b);
 
 	void drawPlayTitle();
+	void drawPlayTwo();
 	void drawControlTitle();
 	void drawCreditsTitle();
 	void drawExitTitle();

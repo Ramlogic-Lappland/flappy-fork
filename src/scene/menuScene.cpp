@@ -13,15 +13,20 @@ using namespace Game;
 
 namespace MenuScene
 {
+	static Texture2D controlsTex;
+
 	void initMenu()
-	{
-		initButton(button, screenWidth / 2 - 100, 200);
+	{		
+		controlsTex = LoadTexture("res/Controls.png");
+
+		initButton(button, screenWidth / 2 - 100, 100);
+		initButton(twoPlayersButton, screenWidth / 2 - 100, 200);
 		initButton(controls, screenWidth / 2 - 100, 300);
 		initButton(credits, screenWidth / 2 - 100, 400);
 		initButton(exitGame, screenWidth / 2 - 100, 500);
 
-		initButton(backToMenu, screenWidth / 2 + 50, 500);
-		initButton(resumeGame, screenWidth / 2 - 200, 500);
+		initButton(backToMenu, 30, 530);
+		initButton(resumeGame, screenWidth / 2 - 80 , 500);
 		initButton(playAgain, screenWidth / 2 - 200, 500);
 
 		initPageButton(page1, screenWidth / 2 - 150, 500);
@@ -33,21 +38,32 @@ namespace MenuScene
 
 		ClearBackground(BLACK);
 
-		DrawText(TextFormat("FLIYING GUADS"), screenWidth / 2 - 170, screenHeightMin + 50, 50, RED);
+		DrawText(TextFormat("FLIYING GUADS"), screenWidth / 2 - 170, screenHeightMin + 30, 50, RED);
 
 		drawButton(button);
+		drawButton(twoPlayersButton);
 		drawButton(controls);
 		drawButton(credits);
 		drawButton(exitGame);
 
 		drawPlayTitle();
+		drawPlayTwo();
 		drawControlTitle();
 		drawCreditsTitle();
 		drawExitTitle();
 
 		if (isButtonPressed(button))
 		{
+			
 			menuOn = false;
+			GameplayScene::twoPlayers = false;
+			resetGame();
+		}
+
+		if (isButtonPressed(twoPlayersButton))
+		{
+			menuOn = false;
+			GameplayScene::twoPlayers = true;
 			resetGame();
 		}
 
@@ -65,7 +81,7 @@ namespace MenuScene
 
 		if (isButtonPressed(exitGame))
 		{
-			CloseWindow();
+			Game::closeAll = true;
 		}
 
 		if (isButtonPressed(backToMenu))
@@ -75,7 +91,7 @@ namespace MenuScene
 			controlsOn = false;
 		}
 
-		DrawText("0.3", screenWidth - 50, screenHeight - 50, 30, RED);
+		DrawText("0.4", screenWidth - 50, screenHeight - 50, 30, RED);
 	}
 
 	void drawConstrols(bool& menuOn, bool& controlsOn)
@@ -83,15 +99,7 @@ namespace MenuScene
 
 		ClearBackground(BLACK);
 
-		DrawText("CONTROLS", screenWidth / 2 - 100, 100, 40, WHITE);
-
-		DrawText("Left Click: ", screenWidth / 2 - 220, 250, 30, WHITE);
-
-		DrawText("Shoot", screenWidth / 2 + 100, 250, 30, WHITE);
-
-		DrawText("Right Click: ", screenWidth / 2 - 220, 350, 30, WHITE);
-
-		DrawText("Move", screenWidth / 2 + 100, 350, 30, WHITE);
+		DrawTexture(controlsTex,0, 0, WHITE);
 
 		drawBackToMenu(menuOn, controlsOn);
 
@@ -104,26 +112,26 @@ namespace MenuScene
 
 		DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 50, 30, WHITE);
 
-		DrawText("Developer: ", screenWidth / 2 - 250, 150, 30, WHITE);
+		DrawText("OG code: ", screenWidth / 2 - 250, 100, 30, WHITE);
 
-		DrawText("Valentin Villar", screenWidth / 2 + 50, 150, 30, WHITE);
+		DrawText("Valentin Villar", screenWidth / 2 + 50, 100, 30, WHITE);
 		DrawText("Tronik in ITCH.IO ", screenWidth / 2 + 50, 180, 30, WHITE);
 
-		DrawText("Background By: ", screenWidth / 2 - 250, 250, 30, WHITE);
+		DrawText("Background By: ", screenWidth / 2 - 250, 240, 30, WHITE);
 
-		DrawText(" in ITCH.IO", screenWidth / 2 + 50, 250, 30, WHITE);
+		DrawText(" in ITCH.IO", screenWidth / 2 + 50, 240, 30, WHITE);
 
-		DrawText("Player By: ", screenWidth / 2 - 250, 350, 30, WHITE);
+		DrawText("Player By: ", screenWidth / 2 - 250, 300, 30, WHITE);
 
-		DrawText("My self with Piskel", screenWidth / 2 + 50, 350, 30, WHITE);
+		DrawText("Valentin Villar Piskel", screenWidth / 2 + 50, 300, 30, WHITE);
 
-		DrawText("Obstacle By: ", screenWidth / 2 - 250, 450, 30, WHITE);
+		DrawText("Forked by: ", screenWidth / 2 - 250, 360, 30, WHITE);
 
-		DrawText(" in ITCH.IO", screenWidth / 2 + 50, 450, 30, WHITE);
+		DrawText("Estanislao Sala", screenWidth / 2 + 50, 360, 30, WHITE);
 
-		DrawText("Library: ", screenWidth / 2 - 250, 550, 30, WHITE);
+		DrawText("Library: ", screenWidth / 2 - 250, 420, 30, WHITE);
 
-		DrawText("Raylib", screenWidth / 2 + 50, 550, 30, WHITE);
+		DrawText("Raylib", screenWidth / 2 + 50, 420, 30, WHITE);
 
 		drawPageButton(creditsOn, creditsOn2);
 
@@ -143,23 +151,6 @@ namespace MenuScene
 		DrawText("Valentin Villar", screenWidth / 2 + 50, 150, 30, WHITE);
 		DrawText("Tronik in SUNO AI ", screenWidth / 2 + 50, 180, 30, WHITE);
 
-		DrawText(" SFX By: ", screenWidth / 2 - 250, 250, 30, WHITE);
-
-		DrawText("", screenWidth / 2 + 50, 250, 30, WHITE);
-
-		DrawText(" SFX By: ", screenWidth / 2 - 250, 350, 30, WHITE);
-
-		DrawText("", screenWidth / 2 + 50, 350, 30, WHITE);
-
-		DrawText(" SFX By: ", screenWidth / 2 - 250, 450, 30, WHITE);
-
-		DrawText("", screenWidth / 2 + 50, 450, 30, WHITE);
-
-		DrawText(" SFX by: ", screenWidth / 2 - 250, 550, 30, WHITE);
-
-		DrawText("", screenWidth / 2 + 50, 550, 30, WHITE);
-
-		DrawText(" SFX by: ", screenWidth / 2 - 250, 650, 30, WHITE);
 
 		DrawText("", screenWidth / 2 + 50, 650, 30, WHITE);
 
@@ -245,7 +236,7 @@ namespace MenuScene
 
 	void unloadMenu()
 	{
-
+		UnloadTexture(controlsTex);
 	}
 }
 

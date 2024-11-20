@@ -13,8 +13,11 @@ using namespace Game;
 
 namespace GameplayScene
 {
-	Player::Player player;
+	Player::Player player1;
+	Player::Player player2;
+
 	Obstacle obstacle;
+
 	static Texture2D background;
 	static Texture2D waterReflection;
 	static Texture2D clouds;
@@ -25,10 +28,12 @@ namespace GameplayScene
 	static float scrollingMid = 0.0f;
 	static float scrollingFront = 0.0f;
 
+	bool twoPlayers = false;
+
 	void initGameplay()
 	{
 		initBackground();
-		Player::initPlayer(player);
+		Player::initPlayer(player1, player2, twoPlayers);
 		initObstacle(obstacle);
 
 		initButton(pauseGame, screenWidth - 200, 550);
@@ -36,17 +41,17 @@ namespace GameplayScene
 
 	void loadGameplay()
 	{
-		Player::loadPlayer(player);
+		Player::loadPlayer(player1, player2);
 	}
 
 	void updateGameplay(bool& menuOn, bool& gameOver)
 	{
-		Player::updatePlayer(player);
+		Player::updatePlayer(player1, player2, twoPlayers);
 		updateObstacle(obstacle);
 
 		checkCollision();
 
-		if (player.life <= 0)
+		if (player1.life <= 0 && player2.life <= 0)
 		{
 			gameOver = true;
 			MenuScene::drawGameOver(menuOn, gameOver);
@@ -57,20 +62,42 @@ namespace GameplayScene
 
 	void checkCollision()
 	{
-		bool collisionTop = (player.position.x + player.radius >= obstacle.position.x &&
-			player.position.x - player.radius <= obstacle.position.x + obstacle.width &&
-			player.position.y + player.radius >= 0 &&
-			player.position.y - player.radius <= obstacle.topHeight);
-
-		bool collisionBottom = (player.position.x + player.radius >= obstacle.position.x &&
-			player.position.x - player.radius <= obstacle.position.x + obstacle.width &&
-			player.position.y + player.radius >= obstacle.topHeight + obstacle.gap &&
-			player.position.y - player.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
-
-		if (collisionTop || collisionBottom)
+		if (player1.life > 0)
 		{
-			initObstacle(obstacle);
-			player.life--;
+			bool collisionTop = (player1.position.x + player1.radius >= obstacle.position.x &&
+				player1.position.x - player1.radius <= obstacle.position.x + obstacle.width &&
+				player1.position.y + player1.radius >= 0 &&
+				player1.position.y - player1.radius <= obstacle.topHeight);
+
+			bool collisionBottom = (player1.position.x + player1.radius >= obstacle.position.x &&
+				player1.position.x - player1.radius <= obstacle.position.x + obstacle.width &&
+				player1.position.y + player1.radius >= obstacle.topHeight + obstacle.gap &&
+				player1.position.y - player1.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
+
+			if (collisionTop || collisionBottom)
+			{
+				initObstacle(obstacle);
+				player1.life--;
+			}
+		}
+
+		if (twoPlayers == true && player2.life > 0)
+		{
+			bool collisionTop = (player2.position.x + player1.radius >= obstacle.position.x &&
+				player2.position.x - player2.radius <= obstacle.position.x + obstacle.width &&
+				player2.position.y + player2.radius >= 0 &&
+				player2.position.y - player2.radius <= obstacle.topHeight);
+
+			bool collisionBottom = (player2.position.x + player2.radius >= obstacle.position.x &&
+				player2.position.x - player2.radius <= obstacle.position.x + obstacle.width &&
+				player2.position.y + player2.radius >= obstacle.topHeight + obstacle.gap &&
+				player2.position.y - player2.radius <= obstacle.topHeight + obstacle.gap + obstacle.bottomHeight);
+
+			if (collisionTop || collisionBottom)
+			{
+				initObstacle(obstacle);
+				player2.life--;
+			}
 		}
 
 	}
@@ -79,7 +106,7 @@ namespace GameplayScene
 	{
 		drawParalaxBackgournd();
 		ClearBackground(GREEN);
-		Player::drawPlayer(player);
+		Player::drawPlayer(player1, player2, twoPlayers);
 		drawObstacle(obstacle);
 
 		drawButton(pauseGame);
@@ -91,7 +118,13 @@ namespace GameplayScene
 			menuOn = false;
 		}
 
-		DrawText(TextFormat(" Life %01i", player.life), screenWidthMin, screenHeightMin, 30, RED);
+		DrawText(TextFormat("Player 1 Lives: %01i", player1.life), screenWidthMin, screenHeightMin, 30, RED);
+
+		if (twoPlayers == true)
+		{
+			DrawText(TextFormat("Player 2 Lives: %01i", player2.life), screenWidthMin + 300, screenHeightMin, 30, RED);
+		}
+
 	}
 
 	void initBackground()
@@ -132,7 +165,7 @@ namespace GameplayScene
 
 	void resetGame()
 	{
-		Player::initPlayer(player);
+		Player::initPlayer(player1, player2, twoPlayers);
 		initObstacle(obstacle);
 	}
 

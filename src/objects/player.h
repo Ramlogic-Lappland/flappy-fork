@@ -26,9 +26,9 @@ namespace Player
         Texture2D texture;
     };
 
-    void initPlayer(Player& player);
-    void loadPlayer(Player& player);
-    void updatePlayer(Player& player);
-    void drawPlayer(Player& player);
-    void unloadPlayer(Player& player);
+    void initPlayer(Player& player1, Player& player2, bool twoPlayers);
+    void loadPlayer(Player& player1, Player& player2);
+    void updatePlayer(Player& player1, Player& player2, bool twoPlayers);
+    void drawPlayer(Player& player1, Player& player2, bool twoPlayers);
+    void unloadPlayer(Player& player1, Player& player2);
 }

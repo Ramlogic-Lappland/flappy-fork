@@ -15,7 +15,6 @@ namespace Game
 	static void update();
 	static void draw();
 	static void unloadGame();
-	static void close();
 
 	int screenWidth = 800;
 	int screenHeight = 600;
@@ -29,27 +28,31 @@ namespace Game
 	bool exitOn = false;
 	bool gameOver = false;
 	bool pauseOn = false;
+	bool closeAll = false;
 
 	void run()
 	{
+		
 		Initialization();
+		InitAudioDevice();
 
 		loadGame();
 
-		while (!WindowShouldClose())
+		while (!WindowShouldClose() && closeAll == false)
 		{
 			update();
 			draw();
 		}
 
 		unloadGame();
+		CloseAudioDevice();
 
-		close();
+		CloseWindow();
 	}
 
 	static void Initialization()
 	{
-		InitWindow(screenWidth, screenHeight, "flying guads");
+		InitWindow(screenWidth, screenHeight, "flying guads OwO");
 
 		initGameplay();
 
@@ -109,10 +112,5 @@ namespace Game
 		unloadGameplay();
 	}
 
-	static void close()
-	{
-		CloseAudioDevice();
-		CloseWindow();
-	}
 }
 

@@ -10,6 +10,7 @@ using namespace Game;
 namespace Buttons
 {
 	Button button;
+    Button twoPlayersButton;
 	Button controls;
 	Button credits;
 	Button backToMenu;
@@ -54,7 +55,12 @@ namespace Buttons
 
 	void drawPlayTitle()
 	{
-		DrawText(TextFormat("PLAY"), screenWidth / 2 - 40, 210, 30, RED);
+		DrawText(TextFormat("PLAY"), screenWidth / 2 - 40, 110, 30, RED);
+	}
+
+	void drawPlayTwo()
+	{
+		DrawText(TextFormat("2 PLAYERS"), screenWidth / 2 - 80, 210, 30, RED);
 	}
 
 	void drawControlTitle()
@@ -74,7 +80,7 @@ namespace Buttons
 
 	void drawBackToMenuTitle()
 	{
-		DrawText(TextFormat("MENU"), screenWidth / 2 + 110, 510, 30, RED);
+		DrawText(TextFormat("MENU"), 80, 540, 30, RED);
 	}
 
 	void drawPauseButtonTitle()
@@ -84,7 +90,7 @@ namespace Buttons
 
 	void drawResumeGameTitle()
 	{
-		DrawText(TextFormat("RESUME"), screenWidth / 2 - 160, 510, 30, RED);
+		DrawText(TextFormat("RESUME"), screenWidth / 2 - 40 , 510, 30, RED);
 	}
 
 	void drawPlayAgainTitle()
