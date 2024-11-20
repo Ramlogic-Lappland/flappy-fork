@@ -14,10 +14,35 @@ using namespace Game;
 namespace MenuScene
 {
 	static Texture2D controlsTex;
+	static Texture2D menuBackground;
+
+	Sound buttonSound;
+	Sound coin;
+	Sound gameOverSound;
+	Sound pop;
+	Sound retroJump;
+
+	Music menuMusic;
+	Music gameMusic;
 
 	void initMenu()
 	{		
 		controlsTex = LoadTexture("res/Controls.png");
+		menuBackground = LoadTexture("res/backgorund.png");
+
+		InitAudioDevice();
+
+		gameMusic = LoadMusicStream("res/music/gameSong.mp3");
+		menuMusic = LoadMusicStream("res/music/menuSong.mp3");
+
+		buttonSound   = LoadSound("res/music/button.wav");
+		gameOverSound = LoadSound("res/music/gameOver.wav");
+		retroJump     = LoadSound("res/music/retroJump.wav");
+		pop           = LoadSound("res/music/pop.wav");
+		coin          = LoadSound("res/music/coin.wav");
+
+		PlayMusicStream(menuMusic);
+		PlayMusicStream(gameMusic);
 
 		initButton(button, screenWidth / 2 - 100, 100);
 		initButton(twoPlayersButton, screenWidth / 2 - 100, 200);
@@ -27,16 +52,18 @@ namespace MenuScene
 
 		initButton(backToMenu, 30, 530);
 		initButton(resumeGame, screenWidth / 2 - 80 , 500);
-		initButton(playAgain, screenWidth / 2 - 200, 500);
+		initButton(playAgain, screenWidth / 2 - 80, 500);
 
 		initPageButton(page1, screenWidth / 2 - 150, 500);
 		initPageButton(page2, screenWidth / 2 - 50, 500);
 	}
 
-	void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn)
+	void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn) //update menu
 	{
-
+		UpdateMusicStream(menuMusic);
 		ClearBackground(BLACK);
+
+		DrawTexture(menuBackground, 0, 0, WHITE);
 
 		DrawText(TextFormat("FLIYING GUADS"), screenWidth / 2 - 170, screenHeightMin + 30, 50, RED);
 
@@ -54,7 +81,7 @@ namespace MenuScene
 
 		if (isButtonPressed(button))
 		{
-			
+			PlaySound(buttonSound);
 			menuOn = false;
 			GameplayScene::twoPlayers = false;
 			resetGame();
@@ -62,6 +89,7 @@ namespace MenuScene
 
 		if (isButtonPressed(twoPlayersButton))
 		{
+			PlaySound(buttonSound);
 			menuOn = false;
 			GameplayScene::twoPlayers = true;
 			resetGame();
@@ -69,29 +97,33 @@ namespace MenuScene
 
 		if (isButtonPressed(controls))
 		{
+			PlaySound(buttonSound);
 			controlsOn = true;
 			menuOn = false;
 		}
 
 		if (isButtonPressed(credits))
 		{
+			PlaySound(buttonSound);
 			creditsOn = true;
 			menuOn = false;
 		}
 
 		if (isButtonPressed(exitGame))
 		{
+			PlaySound(buttonSound);
 			Game::closeAll = true;
 		}
 
 		if (isButtonPressed(backToMenu))
 		{
+			PlaySound(buttonSound);
 			menuOn = true;
 			creditsOn = false;
 			controlsOn = false;
 		}
 
-		DrawText("0.4", screenWidth - 50, screenHeight - 50, 30, RED);
+		DrawText("", screenWidth - 50, screenHeight - 50, 30, RED);
 	}
 
 	void drawConstrols(bool& menuOn, bool& controlsOn)
@@ -146,13 +178,17 @@ namespace MenuScene
 
 		DrawText(TextFormat("CREDITS"), screenWidth / 2 - 60, 50, 30, WHITE);
 
-		DrawText("Menu Music: ", screenWidth / 2 - 250, 150, 30, WHITE);
+		DrawText("Menu Music: ", screenWidth / 2 - 290, 150, 30, WHITE);
 
-		DrawText("Valentin Villar", screenWidth / 2 + 50, 150, 30, WHITE);
-		DrawText("Tronik in SUNO AI ", screenWidth / 2 + 50, 180, 30, WHITE);
+		DrawText("Estanislao Sala", screenWidth / 2 - 80, 150, 30, WHITE);
+		DrawText("Using SUNO AI ", screenWidth / 2 - 80, 180, 30, WHITE);
 
-
-		DrawText("", screenWidth / 2 + 50, 650, 30, WHITE);
+		DrawText("Sounds: ", screenWidth / 2 - 290, 240, 30, WHITE);
+		DrawText("Driken5482 for Jump sound", screenWidth / 2 - 150, 240, 30, WHITE);
+		DrawText("Audiosto for GameOver sound", screenWidth / 2 - 150, 280, 30, WHITE);
+		DrawText("SlodkaBonanza for pop sound", screenWidth / 2 - 150, 320, 30, WHITE);
+		DrawText("floraphonic for coin sound", screenWidth / 2 - 150, 360, 30, WHITE);
+		DrawText("freesound for button sound", screenWidth / 2 - 150, 400, 30, WHITE);
 
 		drawPageButton(creditsOn, creditsOn2);
 
@@ -169,6 +205,7 @@ namespace MenuScene
 
 		if (isButtonPressed(backToMenu))
 		{
+			PlaySound(buttonSound);
 			boolTrue = true;
 			boolFalse = false;
 		}
@@ -183,11 +220,16 @@ namespace MenuScene
 
 		DrawText(TextFormat("What Will You Do"), screenWidth / 2 - 200, screenHeight / 2 - 30, 50, WHITE);
 
+
 		drawButton(resumeGame);
 		drawResumeGameTitle();
 
 		if (isButtonPressed(resumeGame))
+		{
+			PlaySound(buttonSound);
 			pauseOn = false;
+		}
+
 
 		drawBackToMenu(menuOn, pauseOn);
 	}
@@ -200,6 +242,7 @@ namespace MenuScene
 
 		if (isButtonPressed(page1))
 		{
+			PlaySound(buttonSound);
 			creditsOn = true;
 			creditsOn2 = false;
 		}
@@ -209,6 +252,7 @@ namespace MenuScene
 
 		if (isButtonPressed(page2))
 		{
+			PlaySound(buttonSound);
 			creditsOn = false;
 			creditsOn2 = true;
 		}
@@ -227,6 +271,7 @@ namespace MenuScene
 
 		if (isButtonPressed(playAgain))
 		{
+			PlaySound(buttonSound);
 			gameOver = false;
 			resetGame();
 		}
@@ -236,7 +281,17 @@ namespace MenuScene
 
 	void unloadMenu()
 	{
+		UnloadSound(buttonSound);
+		UnloadSound(coin);
+		UnloadSound(gameOverSound);
+		UnloadSound(pop);
+		UnloadSound(retroJump);
+
+		UnloadMusicStream(menuMusic);
+		UnloadMusicStream(gameMusic);
+
 		UnloadTexture(controlsTex);
+		UnloadTexture(menuBackground);
 	}
 }
 

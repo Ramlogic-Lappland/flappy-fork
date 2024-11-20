@@ -2,6 +2,10 @@
 
 #include "objects/utils.h"
 #include "game.h"
+#include "player.h"
+
+#include "scene/menuScene.h"
+#include "scene/gameplayScene.h"
 
 using namespace Game;
 
@@ -30,6 +34,8 @@ namespace Obstacles
 	{
 		if (o.position.x < static_cast<float>(screenWidthMin))
 		{
+			PlaySound(MenuScene::coin);
+			
 			o.position.x = static_cast<float>(screenWidth);
 			o.topHeight = GetRandomValue(50, screenHeight - o.gap - 50);
 			o.bottomHeight = screenHeight - o.topHeight - o.gap;

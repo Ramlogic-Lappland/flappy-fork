@@ -118,7 +118,7 @@
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)res\" "$(OutDir)res\" /i/y/s</Command>
+      <Command>call "$(SolutionDir)scripts\copyScript.bat" "$(solutionDir)" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -163,7 +163,6 @@
     <ClInclude Include="src\objects\buttons.h" />
     <ClInclude Include="src\objects\obstacle.h" />
     <ClInclude Include="src\objects\player.h" />
-    <ClInclude Include="src\objects\utils.h" />
     <ClInclude Include="src\scene\gameplayScene.h" />
     <ClInclude Include="src\scene\menuScene.h" />
   </ItemGroup>

@@ -1,7 +1,16 @@
 #pragma once
 
+#include "raylib.h"
+
 namespace MenuScene
 {
+	extern Music gameMusic;
+	extern Sound buttonSound;
+	extern Sound coin;
+	extern Sound gameOverSound;
+	extern Sound pop;
+	extern Sound retroJump;
+
 	void initMenu();
 
 	void drawMenu(bool& menuOn, bool& controlsOn, bool& creditsOn);

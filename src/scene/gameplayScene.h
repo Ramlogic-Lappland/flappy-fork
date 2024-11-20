@@ -3,6 +3,7 @@
 namespace GameplayScene
 {
 	extern bool twoPlayers;
+	extern int winner;
 
 	void initGameplay();
 

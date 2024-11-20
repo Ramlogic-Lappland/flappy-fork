@@ -21,6 +21,7 @@ namespace Buttons
 	Button page1;
 	Button page2;
 
+
 	void initButton(Button& b, int xPos, int yPos)
 	{
 		b.posX = xPos;
@@ -95,7 +96,7 @@ namespace Buttons
 
 	void drawPlayAgainTitle()
 	{
-		DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 - 190, 510, 30, RED);
+		DrawText(TextFormat("PLAY AGAIN"), screenWidth / 2 - 73, 510, 30, RED);
 	}
 
 	void drawPage1Title()

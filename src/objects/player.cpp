@@ -1,11 +1,13 @@
 #include "objects/player.h"
 
 #include "objects/utils.h"
+#include "scene/menuScene.h"
 #include "game.h"
 
 using namespace Game;
+using namespace MenuScene;
 
-namespace Player
+namespace PlayerN
 {
 	void initPlayer(Player& player1, Player& player2, bool twoPlayers)
 	{
@@ -43,7 +45,7 @@ namespace Player
 		{
 			// P2
 			player2.position = { static_cast<float>(screenWidthMin) + 200,
-								 static_cast<float>(screenHeight) / 2.0f - 20 };
+								 static_cast<float>(screenHeight) / 2.0f - posDiff };
 
 			player2.speed = { 0.0f, 0.0f };
 
@@ -81,10 +83,15 @@ namespace Player
 			player1.position.y += player1.speed.y * GetFrameTime();
 
 			if (IsKeyDown(KEY_SPACE) || IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(MenuScene::retroJump);
 				player1.speed.y = -200.f;
+			}
+				
 
 			if (player1.position.y > screenHeight)
 			{
+				PlaySound(MenuScene::pop);
 				player1.life--;
 
 				player1.position = { static_cast<float>(screenWidthMin) + 200,
@@ -122,10 +129,14 @@ namespace Player
 			player2.position.y += player2.speed.y * GetFrameTime();
 
 			if (IsKeyDown(KEY_UP) || IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+			{
+				PlaySound(MenuScene::retroJump);
 				player2.speed.y = -200.f;
+			}
 
 			if (player2.position.y > screenHeight)
 			{
+				PlaySound(MenuScene::pop);
 				player2.life--;
 
 				player2.position = { static_cast<float>(screenWidthMin) + 200,

@@ -4,7 +4,7 @@
 
 #include "objects/obstacle.h"
 
-namespace Player
+namespace PlayerN
 {
     struct Player
     {

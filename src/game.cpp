@@ -30,14 +30,13 @@ namespace Game
 	bool pauseOn = false;
 	bool closeAll = false;
 
+
 	void run()
 	{
 		
 		Initialization();
-		InitAudioDevice();
 
 		loadGame();
-
 		while (!WindowShouldClose() && closeAll == false)
 		{
 			update();
@@ -45,6 +44,7 @@ namespace Game
 		}
 
 		unloadGame();
+
 		CloseAudioDevice();
 
 		CloseWindow();

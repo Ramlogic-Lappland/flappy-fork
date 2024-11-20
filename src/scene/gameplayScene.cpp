@@ -1,20 +1,22 @@
 #include "scene/gameplayScene.h"
 
 #include "game.h"
+
 #include "objects/player.h"
 #include "objects/obstacle.h"
 #include "objects/utils.h"
+
 #include "scene/menuScene.h"
 #include "objects/buttons.h"
 
-using namespace Buttons;
-using namespace Obstacles; 
 using namespace Game;
+using namespace Buttons;
+using namespace Obstacles;
 
 namespace GameplayScene
 {
-	Player::Player player1;
-	Player::Player player2;
+	PlayerN::Player player1;
+	PlayerN::Player player2;
 
 	Obstacle obstacle;
 
@@ -28,31 +30,50 @@ namespace GameplayScene
 	static float scrollingMid = 0.0f;
 	static float scrollingFront = 0.0f;
 
+	int winner = 0;
 	bool twoPlayers = false;
 
 	void initGameplay()
 	{
 		initBackground();
-		Player::initPlayer(player1, player2, twoPlayers);
+		PlayerN::initPlayer(player1, player2, twoPlayers);
 		initObstacle(obstacle);
-
 		initButton(pauseGame, screenWidth - 200, 550);
+		winner = 0;
 	}
 
 	void loadGameplay()
 	{
-		Player::loadPlayer(player1, player2);
+		PlayerN::loadPlayer(player1, player2);
 	}
 
 	void updateGameplay(bool& menuOn, bool& gameOver)
 	{
-		Player::updatePlayer(player1, player2, twoPlayers);
+		UpdateMusicStream(MenuScene::gameMusic);
+
+		PlayerN::updatePlayer(player1, player2, twoPlayers);
+
+		if (obstacle.position.x < player1.position.x)
+		{
+			if (twoPlayers == true)
+			{
+				player1.point += 10;
+				player2.point += 10;
+			}
+			else
+			{
+				player1.point += 10;
+			}
+		}
 		updateObstacle(obstacle);
+
 
 		checkCollision();
 
+
 		if (player1.life <= 0 && player2.life <= 0)
 		{
+			PlaySound(MenuScene::gameOverSound);
 			gameOver = true;
 			MenuScene::drawGameOver(menuOn, gameOver);
 		}
@@ -106,7 +127,7 @@ namespace GameplayScene
 	{
 		drawParalaxBackgournd();
 		ClearBackground(GREEN);
-		Player::drawPlayer(player1, player2, twoPlayers);
+		PlayerN::drawPlayer(player1, player2, twoPlayers);
 		drawObstacle(obstacle);
 
 		drawButton(pauseGame);
@@ -118,11 +139,13 @@ namespace GameplayScene
 			menuOn = false;
 		}
 
-		DrawText(TextFormat("Player 1 Lives: %01i", player1.life), screenWidthMin, screenHeightMin, 30, RED);
+		DrawText(TextFormat("Player 1 Lives: %01i", player1.life), screenWidthMin, screenHeightMin, 20, RED);
+		//DrawText(TextFormat("Player 1 Score: %01i", player1.point), screenWidthMin + 200, screenHeightMin, 20, RED);
 
 		if (twoPlayers == true)
 		{
-			DrawText(TextFormat("Player 2 Lives: %01i", player2.life), screenWidthMin + 300, screenHeightMin, 30, RED);
+			DrawText(TextFormat("Player 2 Lives: %0i", player2.life), screenWidthMin + 400, screenHeightMin, 20, RED);
+			//DrawText(TextFormat("Player 2 Score: %01i", player2.point), screenWidthMin + 600, screenHeightMin, 20, RED);
 		}
 
 	}
@@ -165,7 +188,7 @@ namespace GameplayScene
 
 	void resetGame()
 	{
-		Player::initPlayer(player1, player2, twoPlayers);
+		PlayerN::initPlayer(player1, player2, twoPlayers);
 		initObstacle(obstacle);
 	}
 
